@@ -1,6 +1,122 @@
 {
     "pipes": [],
-    "interfaces": [],
+    "interfaces": [
+        {
+            "name": "Chainable",
+            "id": "interface-Chainable-c92e82a86d1f1d1584dca350a88428e071943cb4f4e0a1a148bff81c4dc31eaec673504ecc54b6bcaa06fd64b9eb84cc0ef26c7dc7f1a34afa7d4ef4a03b13fa",
+            "file": "cypress/support/commands.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { buildArgsParam } from '@storybook/router';\n\n/// <reference types=\"cypress\" />\ndeclare global {\n  namespace Cypress {\n    interface Chainable {\n      visitComponentStory(\n        componentName: string,\n        storyName: string\n      ): Chainable<Window>;\n      visitComponentStoryWithArgs(\n        componentName: string,\n        storyName: string,\n        args: { [key: string]: any }\n      ): Chainable<Window>;\n    }\n  }\n}\n\nfunction visitComponentStory(componentName: string, storyName: string) {\n  const url = `localhost:6006/iframe.html?id=components-${componentName}--${storyName}`;\n\n  return cy.visit(url);\n}\n\nfunction visitComponentStoryWithArgs(\n  componentName: string,\n  storyName: string,\n  args?: { [key: string]: any }\n) {\n  const url = `localhost:6006/iframe.html?id=components-${componentName}--${storyName}`;\n\n  if (!args) {\n    return cy.visit(url);\n  } else {\n    const urlWithArgs = `${url}&args=${buildArgsParam({}, args)}`;\n    return cy.visit(urlWithArgs);\n  }\n}\n\nCypress.Commands.add('visitComponentStory', visitComponentStory);\nCypress.Commands.add(\n  'visitComponentStoryWithArgs',\n  visitComponentStoryWithArgs\n);\n\nexport {};\n",
+            "properties": [],
+            "indexSignatures": [],
+            "kind": 167,
+            "methods": [
+                {
+                    "name": "visitComponentStory",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Chainable<Window>",
+                    "typeParameters": [],
+                    "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "visitComponentStoryWithArgs",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "args",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Chainable<Window>",
+                    "typeParameters": [],
+                    "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "args",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     "injectables": [],
     "guards": [],
     "interceptors": [],
@@ -60,7 +176,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-df7bc39e105670fa0d8f166c34e2874c161258842d025716bb1c6124b81f360ce7d6075c7afc2b319720176d781048a50167c728816364a93512bd5d37b0120a",
+            "id": "component-ButtonComponent-2469e693cfa79145d6cc9ff416abed98408ce4a3cce41a4c7276c5839412994fae343794df4af3653d6219c818caebe3b3f606231932d1b68e7e2c492ce07d7e",
             "file": "src/app/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -78,11 +194,20 @@
             "viewProviders": [],
             "inputsClass": [
                 {
+                    "name": "icon",
+                    "defaultValue": "'fingerprint'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "IconName | undefined",
+                    "decorators": []
+                },
+                {
                     "name": "label",
                     "defaultValue": "'Button Label'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
+                    "line": 17,
                     "type": "string",
                     "decorators": []
                 },
@@ -91,7 +216,7 @@
                     "defaultValue": "'primary'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 18,
                     "type": "ButtonType",
                     "decorators": []
                 }
@@ -105,7 +230,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 21,
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -117,11 +242,11 @@
             "description": "<p>This is the button component. It can be used to build clicky things!</p>\n<p>See <a href=\"https://www.figma.com/file/X1JRLUCEp6JnoeKAxRPNeF/Angular-Architects-Design-Systems?node-id=1%3A3\">Figma reference</a> for specifications.</p>\n",
             "rawdescription": "\n\nThis is the button component. It can be used to build clicky things!\n\nSee [Figma reference](https://www.figma.com/file/X1JRLUCEp6JnoeKAxRPNeF/Angular-Architects-Design-Systems?node-id=1%3A3) for specifications.\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\nexport type ButtonType = 'primary' | 'secondary';\n\n/**\n * This is the button component. It can be used to build clicky things!\n *\n * See [Figma reference](https://www.figma.com/file/X1JRLUCEp6JnoeKAxRPNeF/Angular-Architects-Design-Systems?node-id=1%3A3) for specifications.\n */\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  @Input() public label: string = 'Button Label';\n  @Input() public type: ButtonType = 'primary';\n\n  constructor() {}\n\n  ngOnInit(): void {}\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { IconName } from '@fortawesome/fontawesome-common-types';\n\nexport type ButtonType = 'primary' | 'secondary';\n\n/**\n * This is the button component. It can be used to build clicky things!\n *\n * See [Figma reference](https://www.figma.com/file/X1JRLUCEp6JnoeKAxRPNeF/Angular-Architects-Design-Systems?node-id=1%3A3) for specifications.\n */\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  @Input() public label: string = 'Button Label';\n  @Input() public type: ButtonType = 'primary';\n  @Input() public icon: IconName | undefined = 'fingerprint';\n\n  constructor() {}\n\n  ngOnInit(): void {}\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../styles/colors\";\n\nbutton {\n  background: #0085fc;\n\n  border: 1px solid #0357a3;\n  box-sizing: border-box;\n  box-shadow: inset 0px 2px 0px rgba(202, 230, 255, 0.15);\n  border-radius: 5px;\n\n  font-family: \"SF Pro Display\", Helvetica, Arial, sans-serif;\n  font-style: normal;\n  font-weight: 600;\n  font-size: 13px;\n  line-height: 16px;\n  display: flex;\n  align-items: center;\n  text-align: center;\n\n  color: #ffffff;\n\n  padding: 11px 16px;\n\n  &.primary {\n    background: $blue-400;\n    border: 1px solid $blue-700;\n  }\n\n  &.secondary {\n    background: $gray-100;\n    border: 1px solid $gray-200;\n    color: $text-color;\n  }\n}\n",
+                    "data": "@import \"../../styles/colors\";\n\nbutton {\n  background: #0085fc;\n\n  border: 1px solid #0357a3;\n  box-sizing: border-box;\n  box-shadow: inset 0px 2px 0px rgba(202, 230, 255, 0.15);\n  border-radius: 5px;\n\n  font-family: \"SF Pro Display\", Helvetica, Arial, sans-serif;\n  font-style: normal;\n  font-weight: 600;\n  font-size: 13px;\n  line-height: 16px;\n  display: flex;\n  align-items: center;\n  text-align: center;\n\n  color: #ffffff;\n\n  padding: 11px 16px;\n\n  &.primary {\n    background: $blue-400;\n    border: 1px solid $blue-700;\n  }\n\n  &.secondary {\n    background: $gray-100;\n    border: 1px solid $gray-200;\n    color: $text-color;\n  }\n\n  app-icon {\n    margin-right: 12px;\n  }\n}\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
@@ -132,24 +257,104 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 17
+                "line": 19
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<button [attr.class]=\"type\">{{ label }}</button>\n"
+            "templateData": "<button [attr.class]=\"type\">\n  <app-icon [iconName]=\"icon\" *ngIf=\"icon\"></app-icon>\n  {{ label }}\n</button>\n"
+        },
+        {
+            "name": "IconComponent",
+            "id": "component-IconComponent-a97ce1199943c73cb3da4754478e133be28f5e577063487d7fa423f6f072bdde392556f538bf3a70cbc20f8ef1287dddc087e37d49537f106aad81d774baebb8",
+            "file": "src/app/icon/icon.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-icon",
+            "styleUrls": [
+                "./icon.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./icon.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "iconColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "\"string\" | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "iconName",
+                    "defaultValue": "'fingerprint'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "IconName",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { IconName } from '@fortawesome/fontawesome-svg-core';\n\n@Component({\n  selector: 'app-icon',\n  templateUrl: './icon.component.html',\n  styleUrls: ['./icon.component.scss'],\n})\nexport class IconComponent implements OnInit {\n  @Input() iconName: IconName = 'fingerprint';\n  @Input() iconColor: 'string' | undefined;\n\n  constructor() {}\n\n  ngOnInit(): void {}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./icon.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 11
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<fa-icon [icon]=\"iconName\" [ngStyle]=\"{ color: iconColor }\"></fa-icon>\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-2ec58e7a32463b9b6cd970cb31e08e29029a47873b1b978b2bb334fc7975f6f5b3557f06f1d8edb8d9117c1bc37b26d4301c2a5e8ccced6f4a56dde5c6a98af4",
+            "id": "module-AppModule-6b98c3c06f4088d367b67db6b8ca962f2166437258de481afb8e3f7b2d921004abf7396765acbf24f818ef7402b10a733f82ea94f88a50173678500d4deb9259",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppComponent } from './app.component';\n\n@NgModule({\n  declarations: [\n    AppComponent\n  ],\n  imports: [\n    BrowserModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppComponent } from './app.component';\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [BrowserModule],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -187,13 +392,13 @@
         },
         {
             "name": "ButtonModule",
-            "id": "module-ButtonModule-09baf7c1f36db99d346bca37b7c56f05e73977143b3c2735e86fac237c9bb4e9aac5b5926674fc49d314eff763f71e32152e4a6f66d4124ee512f68d70a71729",
+            "id": "module-ButtonModule-bbd1a3d9dff863de8bc07e372506960fe42209794b5597df61bcc55fd6a5deea7c34c2e673b1154ba46c2c4ddae59d09cb256b3ee2c2ceb5f2f418cee20d3adb",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/button/button.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ButtonComponent } from './button.component';\n\n@NgModule({\n  declarations: [ButtonComponent],\n  imports: [CommonModule],\n  exports: [ButtonComponent],\n})\nexport class ButtonModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { ButtonComponent } from './button.component';\nimport { IconModule } from '../icon/icon.module';\n\n@NgModule({\n  declarations: [ButtonComponent],\n  imports: [CommonModule, IconModule],\n  exports: [ButtonComponent],\n})\nexport class ButtonModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -209,13 +414,61 @@
                 },
                 {
                     "type": "imports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "IconModule"
+                        }
+                    ]
                 },
                 {
                     "type": "exports",
                     "elements": [
                         {
                             "name": "ButtonComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "IconModule",
+            "id": "module-IconModule-155f6168974fd94eda87ec1519aa6a0b97f5e0b9cd856416e2a944bb16b2ef6d0931a56e56160de00a235d57403675866ea49e04f65b868428de64d0cd14f226",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/icon/icon.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { IconComponent } from './icon.component';\nimport {\n  FontAwesomeModule,\n  FaIconLibrary,\n} from '@fortawesome/angular-fontawesome';\nimport { fas } from '@fortawesome/free-solid-svg-icons';\nimport { far } from '@fortawesome/free-regular-svg-icons';\n\n@NgModule({\n  declarations: [IconComponent],\n  imports: [CommonModule, FontAwesomeModule],\n  exports: [IconComponent],\n})\nexport class IconModule {\n  constructor(library: FaIconLibrary) {\n    library.addIconPacks(fas, far);\n  }\n}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "IconComponent"
                         }
                     ]
                 },
@@ -247,6 +500,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "DefaultIcon",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/icon/icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -290,9 +553,121 @@
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
                 "defaultValue": "(args) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/icon/icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args) => ({\n  props: args,\n})"
             }
         ],
-        "functions": [],
+        "functions": [
+            {
+                "name": "visitComponentStory",
+                "file": "cypress/support/commands.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "visitComponentStoryWithArgs",
+                "file": "cypress/support/commands.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "args",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true
+                    }
+                ],
+                "jsdoctags": [
+                    {
+                        "name": "componentName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "storyName",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "args",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true,
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
         "typealiases": [
             {
                 "name": "ButtonType",
@@ -351,6 +726,28 @@
                     "defaultValue": "(args) => ({\n  props: args,\n})"
                 }
             ],
+            "src/app/icon/icon.stories.ts": [
+                {
+                    "name": "DefaultIcon",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/icon/icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/icon/icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<IconComponent>",
+                    "defaultValue": "(args) => ({\n  props: args,\n})"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -376,7 +773,111 @@
                 }
             ]
         },
-        "groupedFunctions": {},
+        "groupedFunctions": {
+            "cypress/support/commands.ts": [
+                {
+                    "name": "visitComponentStory",
+                    "file": "cypress/support/commands.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "visitComponentStoryWithArgs",
+                    "file": "cypress/support/commands.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "args",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "componentName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "storyName",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "args",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
             "src/app/button/button.component.ts": [
@@ -396,9 +897,38 @@
     },
     "routes": [],
     "coverage": {
-        "count": 2,
+        "count": 1,
         "status": "low",
         "files": [
+            {
+                "filePath": "cypress/support/commands.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Chainable",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "cypress/support/commands.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "visitComponentStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "cypress/support/commands.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "visitComponentStoryWithArgs",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
             {
                 "filePath": "src/app/app.component.ts",
                 "type": "component",
@@ -413,8 +943,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 20,
-                "coverageCount": "1/5",
+                "coveragePercent": 16,
+                "coverageCount": "1/6",
                 "status": "low"
             },
             {
@@ -429,6 +959,35 @@
             },
             {
                 "filePath": "src/app/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/icon/icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/icon/icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DefaultIcon",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/icon/icon.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

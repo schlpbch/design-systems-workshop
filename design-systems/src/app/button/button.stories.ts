@@ -1,5 +1,7 @@
 import { ButtonComponent } from './button.component';
-import { Story } from '@storybook/angular';
+import { moduleMetadata, Story } from '@storybook/angular';
+import { IconModule } from '../icon/icon.module';
+import { ButtonModule } from './button.module';
 
 const Template: Story<ButtonComponent> = (args) => ({
   props: args,
@@ -8,8 +10,25 @@ const Template: Story<ButtonComponent> = (args) => ({
 export default {
   title: 'Components/Button',
   component: ButtonComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [IconModule, ButtonModule],
+    }),
+  ],
 };
 
 export const DefaultButton = Template.bind({});
 
-DefaultButton.args = {};
+DefaultButton.args = {
+  label: 'Button Label',
+  type: 'primary',
+  icon: undefined,
+};
+
+export const IconButton = Template.bind({});
+
+IconButton.args = {
+  label: 'Icon Button',
+  type: 'primary',
+  icon: 'star',
+};
