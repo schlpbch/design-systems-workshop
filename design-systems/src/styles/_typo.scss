@@ -3,6 +3,7 @@
 // Global typography
 
 @mixin body-typo() {
+  font-family: "SF Pro Display", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -12,6 +13,7 @@
 }
 
 @mixin heading-typo() {
+  font-family: "SF Pro Display", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -21,6 +23,7 @@
 }
 
 @mixin link-typo() {
+  font-family: "SF Pro Display", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
