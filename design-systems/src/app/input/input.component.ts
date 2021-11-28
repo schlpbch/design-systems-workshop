@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 export enum InputType {
   button = 'button',
@@ -41,8 +41,13 @@ export class InputComponent implements OnInit {
   @Input() placeholder = 'Input Placeholder';
   @Input() value = '';
   @Input() id?: string;
+  @ViewChild('input', { static: false }) input!: ElementRef<HTMLInputElement>;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  get text(): string {
+    return this.input.nativeElement.value;
+  }
 }
