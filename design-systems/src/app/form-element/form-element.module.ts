@@ -6,5 +6,6 @@ import { InputModule } from '../input/input.module';
 @NgModule({
   declarations: [FormElementComponent],
   imports: [CommonModule, InputModule],
+  exports: [FormElementComponent],
 })
 export class FormElementModule {}
